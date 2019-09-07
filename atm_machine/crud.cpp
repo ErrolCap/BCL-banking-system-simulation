@@ -10,7 +10,7 @@
 #include "file_handling.h"
 
 using namespace std;
-void insert(char * fname, char *lname, char * pin, float balance){
+void insert(char card, char * fname, char *lname, char * pin, float balance){
  
     cout<<fname<<lname<<pin<<endl;
     getch();
@@ -23,8 +23,9 @@ void insert(char * fname, char *lname, char * pin, float balance){
         strcpy(acc[count].lname, lname);
         strcpy(acc[count].pin, pin);
         acc[count].balance = balance;
+        registerCARD(card,acc[count].accNo);
         saveFile();
-        setMessage("Account successfully registed", 2);
+        setMessage("Account successfully registed", 1);
         
     }
 }

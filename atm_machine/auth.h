@@ -1,12 +1,6 @@
 #ifndef AUTH_H
 #define AUTH_H
 
-class auth
-{
-public:
-    auth();
-    ~auth();
-
-};
+void verifyCardLogged();
 
 #endif // AUTH_H

@@ -4,8 +4,12 @@
 #include <iostream>
 #include <string.h>
 #include "Bycrpyt.h"
+#include "file_handling.h"
+#include "CARD.h"
+#include "error.h"
+#include "alert.h"
 using namespace std;
-void registerAcc(){
+void registerAcc(char card){
     Bycrpyt hash;
     char fname[30], lname[30], *pin, *v_pin;
     float balance;
@@ -36,8 +40,12 @@ void registerAcc(){
     }
     pin = hash.encryptPin(pin);
     
+    card = getRemovableDisk();
     
-    insert(fname, lname, pin, balance);
-   
+    if(card != '0'){
+            insert(card, fname, lname, pin, balance);
+    }else{
+         setMessage("Card is removed", 1);
+    }
 }
 

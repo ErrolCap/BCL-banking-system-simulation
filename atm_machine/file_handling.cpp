@@ -4,15 +4,17 @@
 #include "file_handling.h"
 #include "banking.h"
 #include "validation.h"
-
+#include "utils.h"
+#include "config.h"
 //Components
 #include "alert.h"
  
 //File handling
 using namespace std;
+fstream file;
 void saveFile(){
     int i;
-    ofstream file;
+    
     file.open(FILE_NAME, ios::out);
 
     if(file.is_open()){
@@ -27,7 +29,6 @@ void saveFile(){
 
 void retriveFile(){
     int i;
-    ifstream file;
     file.open(FILE_NAME, ios::in);
 
     if(file.is_open()){
@@ -47,3 +48,54 @@ void retriveFile(){
     file.close();
 }
 
+int registerCARD(const char  drive, int accNo){
+
+    string path = ":\\";
+    path.append(BANK_NAME);
+    path.insert(0, 1, drive);
+    path.append(".txt");
+    file.open(path,ios::out);
+    
+    if(file.good()){
+        file<<accNo;
+        file.close();
+        return 1;
+    }
+    
+    return 0;
+}
+
+int loggedCard(const char drive){
+    int accNo;
+    string path = ":\\";
+    path.append(BANK_NAME);
+    path.insert(0, 1, drive);
+    path.append(".txt");
+    file.open(path,ios::in);
+    
+    if(file.is_open()){
+        file>>accNo;
+        file.close();
+        return accNo;
+    }else{
+        file.close();
+        return 0;
+    }
+  
+}
+
+int checkRegistered(const char  drive){
+     string path = ":\\";
+    path.append(BANK_NAME);
+    path.insert(0, 1, drive);
+    path.append(".txt");
+    file.open(path,ios::in);
+     
+     if(file.is_open()){
+         file.close();
+         return 1;
+     }else{
+         file.close();
+         return 0;
+     }
+}

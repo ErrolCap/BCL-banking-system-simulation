@@ -94,6 +94,9 @@
   </Settings>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="controllers">
+      <VirtualDirectory Name="drive_interact">
+        <File Name="CARD.cpp"/>
+      </VirtualDirectory>
       <VirtualDirectory Name="admin">
         <VirtualDirectory Name="register_bank">
           <File Name="register_bank.cpp"/>
@@ -121,6 +124,7 @@
       </VirtualDirectory>
       <VirtualDirectory Name="views">
         <VirtualDirectory Name="components">
+          <File Name="error.cpp"/>
           <VirtualDirectory Name="menu">
             <File Name="main_menu.cpp"/>
             <File Name="admin_menu.cpp"/>
@@ -134,6 +138,8 @@
       </VirtualDirectory>
     </VirtualDirectory>
     <VirtualDirectory Name="header">
+      <File Name="error.h"/>
+      <File Name="CARD.h"/>
       <File Name="main_menu.h"/>
       <File Name="crud.h"/>
       <File Name="utils.h"/>
