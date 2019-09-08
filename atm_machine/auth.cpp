@@ -1,14 +1,18 @@
 #include "auth.h"
 #include "banking.h"
-#include "file_handling.h"
+#include "card_validation.h"
 #include "CARD.h"
 #include "error.h"
 #include "atm_menu.h"
+#include "file_handling.h"
 #include "Bycrpyt.h"
 #include "alert.h"
 #include "utils.h"
 #include <iostream>
+#include <conio.h>
 #include "string.h"
+#include "logo.h"
+#include "main_menu.h"
 
 int loginAccount(int accNo, char * pin);
 void loginInput(const char card);
@@ -16,13 +20,16 @@ using namespace std;
 
 void verifyCardLogged(){
     
-    
+    system("cls");
     while(1){
         char card = getRemovableDisk();
         
         if(card != '0'){
-            if(checkRegistered(card) == 1){
+            if(isRegistered(card) == 1){
                     loginInput(card);
+            }else{
+                setMessage("The card has not yet registered", -1);
+                main_menu();
             }
         }else{
              noCardDetected();
@@ -36,7 +43,7 @@ void verifyCardLogged(){
 
 void loginInput(const char card){
     Bycrpyt hash;
-    cout<<"WELCOME TO "<<BANK_NAME<<endl;
+    logo();
     char *pin;
     int res, cardNo;
     
@@ -45,7 +52,7 @@ void loginInput(const char card){
     cout<<"Enter your pin: ";
     pin = hash.pinField();
     res = loginAccount(cardNo, pin);
-    cout<<"res"<<res<<endl;
+    
     if(res == 0){
         setMessage("Login failed!", 4);
         verifyCardLogged();
@@ -57,7 +64,7 @@ void loginInput(const char card){
 int loginAccount(int accNo, char * pin){
         Bycrpyt hash;
         int loc = location(accNo);
-		cout<<"Acc no"<<accNo<<" location"<<loc<<" pin "<<pin<<" location pin "<<acc[loc].pin<<endl;
+        
         if(loc == 0){
             return 0;
         }

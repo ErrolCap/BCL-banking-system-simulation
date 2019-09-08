@@ -6,7 +6,6 @@
 
 using namespace std;
 
-string allDrives;
 
 char getRemovableDisk(){
     char drive='0';
@@ -26,8 +25,7 @@ char getRemovableDisk(){
             }
         }
     }
-
-    allDrives = currentDrives;
+    
     Sleep(1000);
     return drive;
 }

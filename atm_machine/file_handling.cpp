@@ -84,18 +84,3 @@ int loggedCard(const char drive){
   
 }
 
-int checkRegistered(const char  drive){
-     string path = ":\\";
-    path.append(BANK_NAME);
-    path.insert(0, 1, drive);
-    path.append(".txt");
-    file.open(path,ios::in);
-     
-     if(file.is_open()){
-         file.close();
-         return 1;
-     }else{
-         file.close();
-         return 0;
-     }
-}

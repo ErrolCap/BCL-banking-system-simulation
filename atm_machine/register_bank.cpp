@@ -8,6 +8,7 @@
 #include "CARD.h"
 #include "error.h"
 #include "alert.h"
+
 using namespace std;
 void registerAcc(char card){
     Bycrpyt hash;

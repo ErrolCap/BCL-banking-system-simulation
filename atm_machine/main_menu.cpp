@@ -2,9 +2,11 @@
 #include "atm_menu.h"
 #include "admin_menu.h"
 #include "file_handling.h"
+#include "gotoxy.h"
 #include <iostream>
 #include <conio.h>
 #include "auth.h"
+#include "logo.h"
 using namespace std;
 void main_menu(){
     char choice;

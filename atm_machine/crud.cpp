@@ -36,7 +36,7 @@ int update(int accNo, float amount){
 	getch();
 	if(loc != 0){
         acc[loc].balance = amount;
-         saveFile();
+        saveFile();
         return 1;
        
 	}

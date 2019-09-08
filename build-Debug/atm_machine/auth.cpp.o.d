@@ -1,5 +1,6 @@
 ../build-Debug/atm_machine/auth.cpp.o: auth.cpp auth.h banking.h config.h \
- file_handling.h CARD.h error.h atm_menu.h Bycrpyt.h alert.h utils.h
+ card_validation.h CARD.h error.h atm_menu.h file_handling.h Bycrpyt.h \
+ alert.h utils.h logo.h main_menu.h
 
 auth.h:
 
@@ -7,7 +8,7 @@ banking.h:
 
 config.h:
 
-file_handling.h:
+card_validation.h:
 
 CARD.h:
 
@@ -15,8 +16,14 @@ error.h:
 
 atm_menu.h:
 
+file_handling.h:
+
 Bycrpyt.h:
 
 alert.h:
 
 utils.h:
+
+logo.h:
+
+main_menu.h:

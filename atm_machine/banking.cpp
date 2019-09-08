@@ -5,59 +5,80 @@
 #include "crud.h"
 #include "string.h"
 #include "validation.h"
+#include "card_validation.h"
 #include "utils.h"
 
 using namespace std;
 void view_balance(){
-	
+	 if(!isConnected()){
+        setMessage("Card is ejected, Please re insert your card", 3);
+        return;
+    }
+    
 	cout<<"Your balance is: "<<active.balance<<endl;
-	setMessage("", 0);
+	setMessage("", 2);
 	
 }
 
 void widthdraw(){
+    
+    if(!isConnected()){
+        setMessage("Card is ejected, Please re insert your card", 3);
+        return;
+    }
+    
 	cout<<"Your balance is: "<<active.balance<<endl;
 	float amount;
 	cout<<"Enter your amount to widthraw"<<endl;
     cin>>amount;
 	if(!insufiecient(amount)){
-		if(bank_limit(amount)){
+		if(!bank_limit(amount)){
             active.balance -= amount;
 			
             if(update(active.accNo, active.balance)){
-                setMessage("Amount widthdrawed \nPlease remove your card", 0);
+                setMessage("Amount widthdrawed \nPlease remove your card",2);
             }else{
-                setMessage("Bank is offline...", 0);
+                setMessage("Bank is offline...", 2);
             }
         }else{
-            setMessage(strcat("The limit to widthdraw is ", BANK_LIMIT + "(Pesos)") , 0);
+            setMessage("The limit to widthdraw is 500", 2);
         }
 	}else{
-        setMessage("Insufficient Balance", 0);
+        setMessage("Insufficient Balance", 2);
     }
 	
 }
 
 void deposit(){
+     if(!isConnected()){
+        setMessage("Card is ejected, Please re insert your card", 3);
+        return;
+    }
+    
     cout<<"Your balance is: "<<active.balance<<endl;
 	float amount;
 	cout<<"Enter your amount to deposit"<<endl;
     cin>>amount;
 
-    if(bank_limit(amount)){
+    if(!bank_limit(amount)){
         active.balance += amount;
 
         if(update(active.accNo, active.balance)){
-            setMessage("Amount deposit \nPlease remove your card", 0);
+            setMessage("Amount deposit \nPlease remove your card", 2);
         }else{
-            setMessage("Bank is offline...", 0);
+            setMessage("Bank is offline...", 2);
         }
     }else{
-        setMessage(strcat("The limit to deposit is ", BANK_LIMIT + "(Pesos)") , 0);
+        setMessage("The limit to widthdraw is 500", 2);
     }
 }
 
 void fund_transfer(){
+    if(!isConnected()){
+        setMessage("Card is ejected, Please re insert your card", 3);
+        return;
+    }
+    
     int accNo, loc;
     float amount, amountTransfer;
 
@@ -72,26 +93,26 @@ void fund_transfer(){
 
         if(!insufiecient(amount)){
 
-            if(bank_limit(amount)){
+            if(!bank_limit(amount)){
                 active.balance -= amount;
 
                 if(update(active.accNo, active.balance)){
                     amountTransfer = acc[loc].balance + amount;
                     if(update(acc[loc].accNo, amountTransfer)){
 
-                        setMessage("The fund is transfered succesffuly", 0);
+                        setMessage("The fund is transfered succesffuly", 2);
                     } else{
-                         setMessage("Bank is offline...", 0);
+                         setMessage("Bank is offline...", 2);
                     }
                     
                 }else{
-                    setMessage("Bank is offline...", 0);
+                    setMessage("Bank is offline...", 2);
                 }
             }else{
-                setMessage(strcat("The limit to transfer money is ", BANK_LIMIT + "(Pesos)") , 0);
+                setMessage("The limit to widthdraw is 500"+BANK_LIMIT, 2);
             }
         }else{
-            setMessage("Insufficient Balance", 0);
+            setMessage("Insufficient Balance", 2);
         }
         
 

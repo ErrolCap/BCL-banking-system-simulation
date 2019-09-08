@@ -3,20 +3,25 @@
 #include "admin.h"
 #include "register_bank.h"
 #include "conio.h"
-#include "file_handling.h"
+#include "card_validation.h"
 #include <iostream>
 #include "CARD.h"
 #include "error.h"
 #include "alert.h"
+#include "logo.h"
+#include "gotoxy.h"
 using namespace std;
 void admin_menu(){
     char ch;
     system("cls");
-    cout<<"Choose mode"<<endl;
-    cout<<"[1] Register Account"<<endl;
-    cout<<"[2] Display"<<endl;
-    cout<<"[3] Display"<<endl;
-    cin>>ch;
+    logo();
+    gotoxy(20,23);cout<<"[1] Register Account"<<endl;
+    gotoxy(20,24);cout<<"[2] Display"<<endl;
+    gotoxy(20,25);cout<<"[3] Menu"<<endl;
+    gotoxy(20,26);cout<<"=============================="<<endl;
+    gotoxy(20,27);cout<<"Type your choice: "<<endl;
+    gotoxy(38,27);cin>>ch;
+    gotoxy(20,28);cout<<"=============================="<<endl;
     switch (ch)
     {
     case '1':
@@ -24,7 +29,7 @@ void admin_menu(){
         while(1){
                 char card = getRemovableDisk();
                 if (card != '0'){
-                    if(checkRegistered(card) != 1){
+                    if(isRegistered(card) != 1){
                         registerAcc(card);
                     }else{
                         setMessage("The card is registered", 1);
