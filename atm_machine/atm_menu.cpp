@@ -8,13 +8,16 @@ ACCOUNT active;
 
 void atm_menu(){
     char ch;
-    cout<<"WELCOME TO "<<BANK_NAME<<" "<<"MR: "<<active.fname<<" "<<active.lname<<" "<<endl;
-    cout<<"Choose mode"<<endl;
-    cout<<"[1] View Balance"<<endl;
-    cout<<"[2] Deposit"<<endl;
-    cout<<"[3] Withdraw"<<endl;
-    cout<<"[4] Fund Transfer"<<endl;
-    cout<<"[5] Exit"<<endl;
+	system("cls");
+    cout<<"\tWELCOME TO "<<BANK_NAME<<" "<<active.fname<<" "<<active.lname<<" "<<endl;
+	cout<<"\t=========================================================================="<<endl;
+    cout<<"\tChoose mode"<<endl;
+    cout<<"\t[1] View Balance"<<endl;
+    cout<<"\t[2] Deposit"<<endl;
+    cout<<"\t[3] Withdraw"<<endl;
+    cout<<"\t[4] Fund Transfer"<<endl;
+	cout<<"\t[5] Setting"<<endl;
+    cout<<"\t[6] Logout"<<endl;
     cin>>ch;
     
     system("cls");
@@ -37,6 +40,9 @@ void atm_menu(){
         fund_transfer();
     break;
     
+	case '5':
+		changePin();
+	break;
     default:
         main_menu();
         break;

@@ -10,7 +10,7 @@ using namespace std;
 
 void setMessage(const char * msg,  int menu ){
     cout<<msg<<endl;
-    cout<<"Press any key to continue";
+    cout<<"\tPress any key to continue";
     getch();
     system("cls");
     

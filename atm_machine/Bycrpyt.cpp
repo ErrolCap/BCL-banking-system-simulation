@@ -21,8 +21,10 @@ char* Bycrpyt::pinField(){
         i++;
     }
     pin[6] = '\0';
+	
     return pin;
 }
+
 
 char * Bycrpyt::encryptPin(char * pin){
     int i;

@@ -7,15 +7,16 @@
 #include "validation.h"
 #include "card_validation.h"
 #include "utils.h"
+#include "Bycrpyt.h"
 
 using namespace std;
 void view_balance(){
 	 if(!isConnected()){
-        setMessage("Card is ejected, Please re insert your card", 3);
+        setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
     
-	cout<<"Your balance is: "<<active.balance<<endl;
+	cout<<"\tYour balance is: "<<active.balance<<endl;
 	setMessage("", 2);
 	
 }
@@ -23,72 +24,72 @@ void view_balance(){
 void widthdraw(){
     
     if(!isConnected()){
-        setMessage("Card is ejected, Please re insert your card", 3);
+        setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
     
-	cout<<"Your balance is: "<<active.balance<<endl;
+	cout<<"\tYour balance is: "<<active.balance<<endl;
 	float amount;
-	cout<<"Enter your amount to widthraw"<<endl;
+	cout<<"\tEnter your amount to widthraw"<<endl;
     cin>>amount;
 	if(!insufiecient(amount)){
 		if(!bank_limit(amount)){
             active.balance -= amount;
 			
             if(update(active.accNo, active.balance)){
-                setMessage("Amount widthdrawed \nPlease remove your card",2);
+                setMessage("\tAmount widthdrawed \nPlease remove your card",2);
             }else{
-                setMessage("Bank is offline...", 2);
+                setMessage("\tBank is offline...", 2);
             }
         }else{
-            setMessage("The limit to widthdraw is 500", 2);
+            setMessage("\tThe limit to widthdraw is 500", 2);
         }
 	}else{
-        setMessage("Insufficient Balance", 2);
+        setMessage("\tInsufficient Balance", 2);
     }
 	
 }
 
 void deposit(){
      if(!isConnected()){
-        setMessage("Card is ejected, Please re insert your card", 3);
+        setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
     
-    cout<<"Your balance is: "<<active.balance<<endl;
+    cout<<"\tYour balance is: "<<active.balance<<endl;
 	float amount;
-	cout<<"Enter your amount to deposit"<<endl;
+	cout<<"\tEnter your amount to deposit"<<endl;
     cin>>amount;
 
     if(!bank_limit(amount)){
         active.balance += amount;
 
         if(update(active.accNo, active.balance)){
-            setMessage("Amount deposit \nPlease remove your card", 2);
+            setMessage("\tAmount deposit \nPlease remove your card", 2);
         }else{
-            setMessage("Bank is offline...", 2);
+            setMessage("\tBank is offline...", 2);
         }
     }else{
-        setMessage("The limit to widthdraw is 500", 2);
+        setMessage("\tThe limit to widthdraw is 500", 2);
     }
 }
 
 void fund_transfer(){
     if(!isConnected()){
-        setMessage("Card is ejected, Please re insert your card", 3);
+        setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
     
     int accNo, loc;
     float amount, amountTransfer;
 
-    cout<<"Your balance is: "<<active.balance<<endl;
-    cout<<"Enter the account number of the reciever: ";
+    cout<<"\tYour balance is: "<<active.balance<<endl;
+    cout<<"\tEnter the account number of the reciever: ";
     cin>> accNo;
     loc = location(accNo);
     if(loc != 0){
-        cout<<"The reciever name is "<<acc[loc].fname<<" "<<acc[loc].lname<<" "<<endl;
-        cout<<"Enter your amount to transfer: ";
+        cout<<"\tThe reciever name is "<<acc[loc].fname<<" "<<acc[loc].lname<<" "<<endl;
+        cout<<"\tEnter your amount to transfer: ";
         cin>>amount;
 
         if(!insufiecient(amount)){
@@ -100,22 +101,66 @@ void fund_transfer(){
                     amountTransfer = acc[loc].balance + amount;
                     if(update(acc[loc].accNo, amountTransfer)){
 
-                        setMessage("The fund is transfered succesffuly", 2);
+                        setMessage("\tThe fund is transfered succesffuly", 2);
                     } else{
-                         setMessage("Bank is offline...", 2);
+                         setMessage("\tBank is offline...", 2);
                     }
                     
                 }else{
-                    setMessage("Bank is offline...", 2);
+                    setMessage("\tBank is offline...", 2);
                 }
             }else{
-                setMessage("The limit to widthdraw is 500"+BANK_LIMIT, 2);
+                setMessage("\tThe limit to widthdraw is 500"+BANK_LIMIT, 2);
             }
         }else{
-            setMessage("Insufficient Balance", 2);
+            setMessage("\tInsufficient Balance", 2);
         }
         
 
     }
+}
+
+
+void changePin(){
+	if(!isConnected()){
+        setMessage("\tCard is ejected, Please re-insert your card", 3);
+        return;
+    }
+	
+	Bycrpyt hash;
+	char *old_pin, *pin, *re_pin;
+	cout<<"\tChange PIN"<<endl;
+	cout<<"\tAlways changes your pin every month to avoid hacking."<<endl;
+	cout<<"\t===================================================================="<<endl;
+	cout<<"\tEnter your old PIN: ";
+	old_pin = hash.pinField();
+	cout<<"\tEnter your new PIN: ";
+	pin = hash.pinField();
+	cout<<"\tRe enter your new PIN: ";
+	re_pin = hash.pinField();
+	
+	if(stricmp(hash.decryptPin(active.pin), old_pin)!=0){
+		setMessage("\tWrong old pin input, Please try again...",-1);
+		changePin();
+	}
+	
+	if(strcmp(pin, re_pin) != 0){
+		setMessage("\tThe pin not match, Please try again...", -1);
+		changePin();
+	}
+	
+	if(strcmp(old_pin, pin) == 0){
+		setMessage("\tYour pin has been used before, Please try again...", -1);
+		changePin();
+	}
+	
+	if(updatePin(hash.encryptPin(pin))){
+		setMessage("\tYour pin is successfully change", 2);
+		return;
+	}
+	
+	setMessage("\tBank is offline, please try again later...", 2);
+	
+	
 }
 

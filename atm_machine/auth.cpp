@@ -28,7 +28,7 @@ void verifyCardLogged(){
             if(isRegistered(card) == 1){
                     loginInput(card);
             }else{
-                setMessage("The card has not yet registered", -1);
+                setMessage("\tThe card has not yet registered", -1);
                 main_menu();
             }
         }else{
@@ -48,15 +48,16 @@ void loginInput(const char card){
     int res, cardNo;
     
     cardNo = loggedCard(card);
-    
-    cout<<"Enter your pin: ";
+    cout<<"\t\t\t\t\t\tEnter your pin: ";
     pin = hash.pinField();
     res = loginAccount(cardNo, pin);
     
     if(res == 0){
-        setMessage("Login failed!", 4);
+        cout<<"\t\t\t\t\t\tLogin failed, Please try again..."<<endl;
+		getch();
         verifyCardLogged();
     }
+	//109328
     system("cls");
     atm_menu();
 }
@@ -71,17 +72,23 @@ int loginAccount(int accNo, char * pin){
 
 		char * db_pin = hash.decryptPin(acc[loc].pin);
 		char * user_pin = pin;
-		
+		cout<<db_pin<<" "<<user_pin;
         if(strcmp(db_pin,user_pin) != 0){
             return 0;
         }
 
         active.accNo = acc[loc].accNo;
         strcpy(active.fname, acc[loc].fname);
+        strcpy(active.mname, acc[loc].mname);
         strcpy(active.lname, acc[loc].lname);
-        strcpy(active.pin, acc[loc].pin);
+		strcpy(active.dob, acc[loc].dob);
+		strcpy(active.cpNo, acc[loc].cpNo);
+		strcpy(active.addr, acc[loc].addr);
+		strcpy(active.pin, acc[loc].pin);
+		strcpy(active.sex, acc[loc].sex);
+		strcpy(active.email, acc[loc].email);
         active.balance = acc[loc].balance;
-       
+		
         return 1;
         
 }

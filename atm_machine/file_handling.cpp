@@ -20,7 +20,7 @@ void saveFile(){
     if(file.is_open()){
         file<<count<<endl;
         for(i = 1; i<= count; i++){
-            file<<acc[i].accNo<<" "<<acc[i].fname<<" "<<acc[i].lname<<" "<<acc[i].pin<<" "<<acc[i].balance<<endl;
+            file<<acc[i].accNo<<" "<<acc[i].fname<<" "<<acc[i].mname<<" "<<acc[i].lname<<" "<<acc[i].dob<<" "<<acc[i].cpNo<<" "<<acc[i].addr<<" "<<acc[i].pin<<" "<<acc[i].sex<<" "<<acc[i].email<<" "<<acc[i].balance<<endl;
         }
     }
     else setMessage("Bank is offline...", 0);
@@ -36,9 +36,15 @@ void retriveFile(){
         for(i = 1; i<= count; i++){
             file>>acc[i].accNo;
             file>>acc[i].fname;
+			file>>acc[i].mname;
             file>>acc[i].lname;
+			file>>acc[i].dob;
+			file>>acc[i].cpNo;
+			file>>acc[i].addr;
             file>>acc[i].pin;
-            file>>acc[i].balance;
+			file>>acc[i].sex;
+			file>>acc[i].email;
+			file>>acc[i].balance;
         }
     }
     else {
