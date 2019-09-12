@@ -8,7 +8,7 @@
 #include "card_validation.h"
 #include "utils.h"
 #include "Bycrpyt.h"
-
+#include "Input.h"
 using namespace std;
 void view_balance(){
 	 if(!isConnected()){
@@ -126,18 +126,19 @@ void changePin(){
         setMessage("\tCard is ejected, Please re-insert your card", 3);
         return;
     }
-	
+	Input inp;
 	Bycrpyt hash;
+	
 	char *old_pin, *pin, *re_pin;
 	cout<<"\tChange PIN"<<endl;
 	cout<<"\tAlways changes your pin every month to avoid hacking."<<endl;
 	cout<<"\t===================================================================="<<endl;
 	cout<<"\tEnter your old PIN: ";
-	old_pin = hash.pinField();
+	old_pin = inp.getPassword(1, 6);
 	cout<<"\tEnter your new PIN: ";
-	pin = hash.pinField();
+	pin = inp.getPassword(1, 6);
 	cout<<"\tRe enter your new PIN: ";
-	re_pin = hash.pinField();
+	re_pin = inp.getPassword(1, 6);
 	
 	if(stricmp(hash.decryptPin(active.pin), old_pin)!=0){
 		setMessage("\tWrong old pin input, Please try again...",-1);

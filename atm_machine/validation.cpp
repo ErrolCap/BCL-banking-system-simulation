@@ -3,6 +3,8 @@
 #include "config.h"
 #include "validation.h"
 #include "alert.h"
+
+#include "input.h"
 #include <iostream>
 
 using namespace std;
@@ -22,13 +24,14 @@ int bank_limit(float amount){
 
 
 int to_continue(){
+	Input inp;
 	char choice;
-	cout<<endl<<"Do you want to register the account ?"<<endl;
-	cout<<"[1] Register the account"<<endl;
-	cout<<"[2] Discard"<<endl;
-	cout<<"Enter your choice: ";
-	cin>>choice;
-	
+	cout<<endl<<"\tDo you want to continue ?"<<endl;
+	cout<<"\t[1] Continue"<<endl;
+	cout<<"\t[2] Discard"<<endl;
+	cout<<"\tEnter your choice: ";
+	choice = inp.getChoice('1', '2');
+	cout<<endl;
 	switch(choice){
 		case '1':
 		return 1;
@@ -38,7 +41,7 @@ int to_continue(){
 		break;
 		
 		default:
-		setMessage("Wrong input, please try again.", -1);
+		setMessage("\tWrong input, please try again.", -1);
 		to_continue();
 		break;
 	}

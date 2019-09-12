@@ -1,5 +1,6 @@
 #include <fstream>
-
+#include <iostream>
+#include <conio.h>
 //Context
 #include "file_handling.h"
 #include "banking.h"
@@ -21,7 +22,7 @@ void saveFile(){
         file<<count<<endl;
         for(i = 1; i<= count; i++){
             file<<acc[i].accNo<<" "<<acc[i].fname<<" "<<acc[i].mname<<" "<<acc[i].lname<<" "<<acc[i].dob<<" "<<acc[i].cpNo<<" "<<acc[i].addr<<" "<<acc[i].pin<<" "<<acc[i].sex<<" "<<acc[i].email<<" "<<acc[i].balance<<endl;
-        }
+		}
     }
     else setMessage("Bank is offline...", 0);
     file.close();

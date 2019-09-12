@@ -12,6 +12,7 @@
 #include <conio.h>
 #include "string.h"
 #include "logo.h"
+#include "Input.h"
 #include "main_menu.h"
 
 int loginAccount(int accNo, char * pin);
@@ -43,16 +44,16 @@ void verifyCardLogged(){
 
 void loginInput(const char card){
     Bycrpyt hash;
+	Input inp;
     logo();
     char *pin;
-    int res, cardNo;
+    int cardNo;
     
     cardNo = loggedCard(card);
     cout<<"\t\t\t\t\t\tEnter your pin: ";
-    pin = hash.pinField();
-    res = loginAccount(cardNo, pin);
+    pin = inp.getPassword(1, 6);
     
-    if(res == 0){
+    if(loginAccount(cardNo, pin)){
         cout<<"\t\t\t\t\t\tLogin failed, Please try again..."<<endl;
 		getch();
         verifyCardLogged();
@@ -72,7 +73,6 @@ int loginAccount(int accNo, char * pin){
 
 		char * db_pin = hash.decryptPin(acc[loc].pin);
 		char * user_pin = pin;
-		cout<<db_pin<<" "<<user_pin;
         if(strcmp(db_pin,user_pin) != 0){
             return 0;
         }
@@ -85,7 +85,7 @@ int loginAccount(int accNo, char * pin){
 		strcpy(active.cpNo, acc[loc].cpNo);
 		strcpy(active.addr, acc[loc].addr);
 		strcpy(active.pin, acc[loc].pin);
-		strcpy(active.sex, acc[loc].sex);
+		strcpy(active.sex, acc[loc].sex); //132439
 		strcpy(active.email, acc[loc].email);
         active.balance = acc[loc].balance;
 		

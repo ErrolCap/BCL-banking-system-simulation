@@ -14,7 +14,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Development
-Date                   :=11/09/2019
+Date                   :=12/09/2019
 CodeLitePath           :="C:/Program Files/CodeLite"
 LinkerName             :=C:/MinGW/bin/g++.exe
 SharedObjectLinkerName :=C:/MinGW/bin/g++.exe -shared -fPIC
@@ -62,8 +62,8 @@ AS       := C:/MinGW/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=C:\Program Files\CodeLite
-Objects0=../build-$(ConfigurationName)/atm_machine/admin_menu.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/main_menu.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/logo.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/gotoxy.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/utils.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/config.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/Input.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/file_handling.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/main.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/atm_menu.cpp$(ObjectSuffix) \
-	../build-$(ConfigurationName)/atm_machine/admin.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/Bycrpyt.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/card_validation.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/CARD.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/validation.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/crud.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/banking.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/alert.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/auth.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/register_bank.cpp$(ObjectSuffix) \
+Objects0=../build-$(ConfigurationName)/atm_machine/admin_menu.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/main_menu.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/logo.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/gotoxy.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/utils.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/config.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/file_handling.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/main.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/atm_menu.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/admin.cpp$(ObjectSuffix) \
+	../build-$(ConfigurationName)/atm_machine/Bycrpyt.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/Input.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/alert.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/card_validation.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/CARD.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/validation.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/crud.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/banking.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/auth.cpp$(ObjectSuffix) ../build-$(ConfigurationName)/atm_machine/register_bank.cpp$(ObjectSuffix) \
 	../build-$(ConfigurationName)/atm_machine/error.cpp$(ObjectSuffix) 
 
 
@@ -143,14 +143,6 @@ PreBuild:
 ../build-$(ConfigurationName)/atm_machine/config.cpp$(PreprocessSuffix): config.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/atm_machine/config.cpp$(PreprocessSuffix) config.cpp
 
-../build-$(ConfigurationName)/atm_machine/Input.cpp$(ObjectSuffix): Input.cpp ../build-$(ConfigurationName)/atm_machine/Input.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Development/Documents/BCL-Banking-System/atm_machine/Input.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Input.cpp$(ObjectSuffix) $(IncludePath)
-../build-$(ConfigurationName)/atm_machine/Input.cpp$(DependSuffix): Input.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/atm_machine/Input.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/atm_machine/Input.cpp$(DependSuffix) -MM Input.cpp
-
-../build-$(ConfigurationName)/atm_machine/Input.cpp$(PreprocessSuffix): Input.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/atm_machine/Input.cpp$(PreprocessSuffix) Input.cpp
-
 ../build-$(ConfigurationName)/atm_machine/file_handling.cpp$(ObjectSuffix): file_handling.cpp ../build-$(ConfigurationName)/atm_machine/file_handling.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Development/Documents/BCL-Banking-System/atm_machine/file_handling.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/file_handling.cpp$(ObjectSuffix) $(IncludePath)
 ../build-$(ConfigurationName)/atm_machine/file_handling.cpp$(DependSuffix): file_handling.cpp
@@ -191,6 +183,22 @@ PreBuild:
 ../build-$(ConfigurationName)/atm_machine/Bycrpyt.cpp$(PreprocessSuffix): Bycrpyt.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/atm_machine/Bycrpyt.cpp$(PreprocessSuffix) Bycrpyt.cpp
 
+../build-$(ConfigurationName)/atm_machine/Input.cpp$(ObjectSuffix): Input.cpp ../build-$(ConfigurationName)/atm_machine/Input.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Development/Documents/BCL-Banking-System/atm_machine/Input.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Input.cpp$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/atm_machine/Input.cpp$(DependSuffix): Input.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/atm_machine/Input.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/atm_machine/Input.cpp$(DependSuffix) -MM Input.cpp
+
+../build-$(ConfigurationName)/atm_machine/Input.cpp$(PreprocessSuffix): Input.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/atm_machine/Input.cpp$(PreprocessSuffix) Input.cpp
+
+../build-$(ConfigurationName)/atm_machine/alert.cpp$(ObjectSuffix): alert.cpp ../build-$(ConfigurationName)/atm_machine/alert.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Development/Documents/BCL-Banking-System/atm_machine/alert.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/alert.cpp$(ObjectSuffix) $(IncludePath)
+../build-$(ConfigurationName)/atm_machine/alert.cpp$(DependSuffix): alert.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/atm_machine/alert.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/atm_machine/alert.cpp$(DependSuffix) -MM alert.cpp
+
+../build-$(ConfigurationName)/atm_machine/alert.cpp$(PreprocessSuffix): alert.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/atm_machine/alert.cpp$(PreprocessSuffix) alert.cpp
+
 ../build-$(ConfigurationName)/atm_machine/card_validation.cpp$(ObjectSuffix): card_validation.cpp ../build-$(ConfigurationName)/atm_machine/card_validation.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Development/Documents/BCL-Banking-System/atm_machine/card_validation.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/card_validation.cpp$(ObjectSuffix) $(IncludePath)
 ../build-$(ConfigurationName)/atm_machine/card_validation.cpp$(DependSuffix): card_validation.cpp
@@ -230,14 +238,6 @@ PreBuild:
 
 ../build-$(ConfigurationName)/atm_machine/banking.cpp$(PreprocessSuffix): banking.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/atm_machine/banking.cpp$(PreprocessSuffix) banking.cpp
-
-../build-$(ConfigurationName)/atm_machine/alert.cpp$(ObjectSuffix): alert.cpp ../build-$(ConfigurationName)/atm_machine/alert.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Development/Documents/BCL-Banking-System/atm_machine/alert.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/alert.cpp$(ObjectSuffix) $(IncludePath)
-../build-$(ConfigurationName)/atm_machine/alert.cpp$(DependSuffix): alert.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT../build-$(ConfigurationName)/atm_machine/alert.cpp$(ObjectSuffix) -MF../build-$(ConfigurationName)/atm_machine/alert.cpp$(DependSuffix) -MM alert.cpp
-
-../build-$(ConfigurationName)/atm_machine/alert.cpp$(PreprocessSuffix): alert.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) ../build-$(ConfigurationName)/atm_machine/alert.cpp$(PreprocessSuffix) alert.cpp
 
 ../build-$(ConfigurationName)/atm_machine/auth.cpp$(ObjectSuffix): auth.cpp ../build-$(ConfigurationName)/atm_machine/auth.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "C:/Users/Development/Documents/BCL-Banking-System/atm_machine/auth.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/auth.cpp$(ObjectSuffix) $(IncludePath)

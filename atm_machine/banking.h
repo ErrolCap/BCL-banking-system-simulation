@@ -7,7 +7,7 @@ typedef struct account {
         char fname[40];
         char mname[40];
         char lname[40];
-        char cpNo[11];
+        char cpNo[20];
         char sex[10];
         char dob[20];
         char addr[40];

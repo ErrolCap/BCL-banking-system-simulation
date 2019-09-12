@@ -8,7 +8,7 @@
 #include "error.h"
 #include "alert.h"
 #include "input.h"
-
+#include "validation.h"
 #include <iostream>
 #include <string.h>
 #include <ctime>
@@ -18,57 +18,58 @@ void registerAcc(char card){
 	Input inp;
     Bycrpyt hash;
 	system("cls");
-    char fname[40], mname[40], lname[40], cpNo[11], sex[10], dob[20] , addr[40], email[40];
-    char *pin;
+    char *fname = new char[40], *mname= new char[40], *sname= new char[40], *cpNo= new char[11], *dob= new char[10], *sex= new char[5],  *addr= new char[40], *email= new char[40], *pin = new char[6];
 	float balance;
     
     cout<<"\tRegister Account"<<endl<<endl;
 	cout<<"\tPersonal Information"<<endl;
 	cout<<"\t========================================================================="<<endl;
     cout<<"\tEnter your First Name: ";
-    strcpy(fname, inp.getText(40, "letter"));
-    cout<<fname<<endl;
+    strcpy(fname, inp.getText(1, 40, "letter"));
+	
     cout<<"\tEnter your Middle Name: ";
-	strcpy(mname, inp.getText(40, "letter"));
-    
+	strcpy(mname, inp.getText(1, 40, "letter"));
+	
     cout<<"\tEnter your Last Name: ";
-	strcpy(lname, inp.getText(40, "letter"));
+	strcpy(sname, inp.getText(1, 40, "letter"));
 	
-	cout<<"\tEnter your Cellphone Number: 63+";
-	strcpy(cpNo, inp.getText(11, "digit"));
+	cout<<"\tEnter your Cellphone Number: ";
+	strcpy(cpNo, inp.getText(11 ,11, "digit"));
 	
-	//cout<<"\tEnter your Home Address [1369 Mend St. Sta Cruz, Manila]: ";
-	//cin.getline(addr,40);
-    //cout<<addr;
+	cout<<"\tEnter your Home Address [ex. 1369 Mend St. Sta Cruz, Manila]: ";
+	strcpy(addr, inp.getText(5 ,40, "address"));
 	
-    cout<<"\tEnter gender [MALE/FEMALE]: ";
-	strcpy(sex, inp.getText(10, "letter"));
+	//Parsing space to _
+	strcpy(addr, inp.parseSpace(addr, true));
 	
-	cout<<"\tEnter your birthday [ MM/DD/YYYY ]: ";
-	strcpy(sex, inp.getText(20, "letter"));
+    cout<<"\tEnter gender (Press tab to choose): ";
+	strcpy(sex, inp.getGender());
 	
-	cout<<"\tEnter your Email Address [johndoe@gmail.com]: ";
-	strcpy(email, inp.getText(20, "letter"));
+	cout<<"\tEnter your birthday [ MM/DD/YYYY ] : ";
+	strcpy(dob, inp.getDate());
+	
+	cout<<"\tEnter your Email Address [ex. johndoe@gmail.com]: ";
+	strcpy(email, inp.getText(5,30, "email"));
 	
 	//Calling the function of plan Chooser 
     balance = planChooser();
     
-    pin = generatePin();
+    strcpy(pin,  generatePin());
 	cout<<"\tYour initial pin for card is: "<<pin<<endl;
-	pin = hash.encryptPin(pin);
-        
-    if(isConnected()){
-			insert(card, fname, mname, lname, cpNo, sex, dob, addr,  email, pin, balance);
+	strcpy(pin, hash.encryptPin(pin));
+		
+    if(isConnected() && to_continue()){
+			insert(card, fname, mname, sname, cpNo, sex, dob, addr, email, pin, balance);
     }else{
-         setMessage("\tCard is removed", 1);
+         setMessage("\tProcess terminated..", 1);
     }
 }
 
 float planChooser(){
+	Input inp;
 	float initDeposit = 0; 
 	char choice;
-	system("cls");
-	cout<<"\tChoose your plan"<<endl;
+	cout<<endl<<"\tChoose your plan"<<endl;
 	cout<<"\t========================================================================="<<endl;
 	cout<<"\t[1] STUDENT PLAN - Recommend for the student only need to present valid"<<endl;
 	cout<<"\t    and the initial deposit is only 100.00 pesos"<<endl;
@@ -79,7 +80,7 @@ float planChooser(){
 	cout<<"\t    need to present bussiness certificate and BIR Record the initial deposit is"<<endl;
 	cout<<"\t    only 100,000 pesos."<<endl<<endl;
 	cout<<"\tEnter your choice: ";
-	cin>>choice;
+	choice = inp.getChoice('1', '3');
 	switch(choice){
 		case '1':
 		initDeposit = 100.00;

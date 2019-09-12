@@ -10,9 +10,9 @@
 #include "file_handling.h"
 
 using namespace std;
-void insert(char filePath, char fname[40], char mname[40], char lname[40], char cpNo[11], 
-                    char sex[10], char dob[20], char addr[40],  char email[40],  char pin[5], float balance){
- 
+void insert(char filePath, char *fname, char *mname, char *lname, char *cpNo, 
+                    char *sex, char *dob, char *addr,  char *email,  char *pin, float balance){
+	//cout<<"\t"<<fname<<" "<<mname<<" "<<lname<<" "<<cpNo<<" "<<sex<<" "<<dob<<" "<<addr<<" "<<email<<" "<<pin<<" "<<balance<<endl;
     if(isFull()){
         setMessage("\tAccount is full", 1);
     }else{

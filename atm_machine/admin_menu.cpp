@@ -15,27 +15,27 @@ void admin_menu(){
     char ch;
     system("cls");
     logo();
-    gotoxy(20,23);cout<<"[1] Register Account"<<endl;
-    gotoxy(20,24);cout<<"[2] Display"<<endl;
-    gotoxy(20,25);cout<<"[3] Menu"<<endl;
-    gotoxy(20,26);cout<<"=============================="<<endl;
-    gotoxy(20,27);cout<<"Type your choice: "<<endl;
-    gotoxy(38,27);cin>>ch;
-    gotoxy(20,28);cout<<"=============================="<<endl;
+    cout<<"\t\t[1] Register Account"<<endl;
+	cout<<"\t\t[2] Display"<<endl;
+	cout<<"\t\t[3] Menu"<<endl;
+	cout<<"\t\t=============================="<<endl;
+	cout<<"\t\tType your choice: ";
+	cin>>ch;
+	system("cls");
     switch (ch)
     {
     case '1':
-       
         while(1){
                 char card = getRemovableDisk();
                 if (card != '0'){
+					
                     if(isRegistered(card) != 1){
                         registerAcc(card);
                     }else{
-                        setMessage("The card is registered", 1);
+                        setMessage("\tThe card is registered", 1);
                     }
                 }else{
-                    setMessage("Please insert a card", 1);
+                    setMessage("\tPlease insert a card", 1);
                 }
         }
         
