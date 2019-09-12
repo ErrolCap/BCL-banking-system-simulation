@@ -1,7 +1,9 @@
 #include <conio.h>
 #include "Bycrpyt.h"
 #include "config.h"
+#include <iostream>
 
+using namespace std;
 Bycrpyt::Bycrpyt()
 {
 }
@@ -14,13 +16,21 @@ Bycrpyt::~Bycrpyt()
 char* Bycrpyt::pinField(){
     int i = 0;
     char* pin = new char[6];
-    
-    while(i != 6 ){
-        pin[i] = getch();
-        putch(42);
-        i++;
+    char temp; 
+	
+    while(temp != 13 && i != 6 ){
+        temp = getch();
+        
+		if(temp != 8){
+			pin[i] = temp;
+			putch(42);
+			i++;
+		}else{
+			cout<<"\b\b";
+			i--;
+		}
     }
-    pin[6] = '\0';
+    pin[i+1] = '\0';
 	
     return pin;
 }

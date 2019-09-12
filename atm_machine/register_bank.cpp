@@ -7,6 +7,7 @@
 #include "CARD.h"
 #include "error.h"
 #include "alert.h"
+#include "input.h"
 
 #include <iostream>
 #include <string.h>
@@ -14,6 +15,7 @@
 
 using namespace std;
 void registerAcc(char card){
+	Input inp;
     Bycrpyt hash;
 	system("cls");
     char fname[40], mname[40], lname[40], cpNo[11], sex[10], dob[20] , addr[40], email[40];
@@ -24,28 +26,29 @@ void registerAcc(char card){
 	cout<<"\tPersonal Information"<<endl;
 	cout<<"\t========================================================================="<<endl;
     cout<<"\tEnter your First Name: ";
-    cin.getline(fname,40);
-    
+    strcpy(fname, inp.getText(40, "letter"));
+    cout<<fname<<endl;
     cout<<"\tEnter your Middle Name: ";
-    cin.getline(mname,40);
+	strcpy(mname, inp.getText(40, "letter"));
     
     cout<<"\tEnter your Last Name: ";
-	cin.getline(lname,40);
+	strcpy(lname, inp.getText(40, "letter"));
 	
 	cout<<"\tEnter your Cellphone Number: 63+";
-	cin.getline(cpNo,11);
+	strcpy(cpNo, inp.getText(11, "digit"));
 	
-	cout<<"\tEnter your Home Address [1369 Mend St. Sta Cruz, Manila]: ";
-	cin.getline(addr,40);
-    cout<<addr;
+	//cout<<"\tEnter your Home Address [1369 Mend St. Sta Cruz, Manila]: ";
+	//cin.getline(addr,40);
+    //cout<<addr;
+	
     cout<<"\tEnter gender [MALE/FEMALE]: ";
-	cin.getline(sex,10);
+	strcpy(sex, inp.getText(10, "letter"));
 	
 	cout<<"\tEnter your birthday [ MM/DD/YYYY ]: ";
-	cin.getline(dob,20);
+	strcpy(sex, inp.getText(20, "letter"));
 	
 	cout<<"\tEnter your Email Address [johndoe@gmail.com]: ";
-	cin.getline(email,20);
+	strcpy(email, inp.getText(20, "letter"));
 	
 	//Calling the function of plan Chooser 
     balance = planChooser();

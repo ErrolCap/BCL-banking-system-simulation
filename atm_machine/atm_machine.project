@@ -95,8 +95,8 @@
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="controllers">
       <VirtualDirectory Name="input">
-        <File Name="input.cpp"/>
-        <File Name="input.h"/>
+        <File Name="Input.cpp"/>
+        <File Name="Input.h"/>
       </VirtualDirectory>
       <VirtualDirectory Name="drive_interact">
         <File Name="card_validation.cpp"/>

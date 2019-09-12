@@ -1,3 +1,3 @@
-../build-Debug/atm_machine/input.cpp.o: input.cpp input.h
+../build-Debug/atm_machine/input.cpp.o: Input.cpp Input.h
 
-input.h:
+Input.h:
