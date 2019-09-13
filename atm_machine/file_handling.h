@@ -3,6 +3,6 @@
 
 void saveFile();
 void retriveFile();
-int registerCARD(const char  drive, int accNo);
-int loggedCard(const char drive);
+int registerCARD(const char  drive, char * accNo);
+char * loggedCard(const char drive);
 #endif // FILE_HANDLING_H

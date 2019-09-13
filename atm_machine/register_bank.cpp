@@ -8,6 +8,7 @@
 #include "error.h"
 #include "alert.h"
 #include "input.h"
+#include "utils.h"
 #include "validation.h"
 #include <iostream>
 #include <string.h>
@@ -18,48 +19,52 @@ void registerAcc(char card){
 	Input inp;
     Bycrpyt hash;
 	system("cls");
-    char *fname = new char[40], *mname= new char[40], *sname= new char[40], *cpNo= new char[11], *dob= new char[10], *sex= new char[5],  *addr= new char[40], *email= new char[40], *pin = new char[6];
+    char *fname = new char[40], *mname= new char[40], *sname= new char[40], *cpNo= new char[11], 
+	*dob= new char[10], *sex= new char[5],  *addr= new char[40], *email= new char[40], *pin = new char[6], *accNo = new char[16];
 	float balance;
     
     cout<<"\tRegister Account"<<endl<<endl;
 	cout<<"\tPersonal Information"<<endl;
 	cout<<"\t========================================================================="<<endl;
-    cout<<"\tEnter your First Name: ";
+    cout<<"\tEnter the First Name: ";
     strcpy(fname, inp.getText(1, 40, "letter"));
 	
-    cout<<"\tEnter your Middle Name: ";
+    cout<<"\tEnter the Middle Name: ";
 	strcpy(mname, inp.getText(1, 40, "letter"));
 	
-    cout<<"\tEnter your Last Name: ";
+    cout<<"\tEnter the Last Name: ";
 	strcpy(sname, inp.getText(1, 40, "letter"));
 	
-	cout<<"\tEnter your Cellphone Number: ";
+	cout<<"\tEnter the Cellphone Number: ";
 	strcpy(cpNo, inp.getText(11 ,11, "digit"));
 	
-	cout<<"\tEnter your Home Address [ex. 1369 Mend St. Sta Cruz, Manila]: ";
+	cout<<"\tEnter the Home Address [ex. 1369 Mend St. Sta Cruz, Manila]: ";
 	strcpy(addr, inp.getText(5 ,40, "address"));
 	
 	//Parsing space to _
 	strcpy(addr, inp.parseSpace(addr, true));
 	
-    cout<<"\tEnter gender (Press tab to choose): ";
+    cout<<"\tEnter the gender (Press tab to choose): ";
 	strcpy(sex, inp.getGender());
 	
-	cout<<"\tEnter your birthday [ MM/DD/YYYY ] : ";
+	cout<<"\tEnter the birthday [ MM/DD/YYYY ] : ";
 	strcpy(dob, inp.getDate());
 	
-	cout<<"\tEnter your Email Address [ex. johndoe@gmail.com]: ";
+	cout<<"\tEnter the Email Address [ex. johndoe@gmail.com]: ";
 	strcpy(email, inp.getText(5,30, "email"));
 	
 	//Calling the function of plan Chooser 
     balance = planChooser();
-    
+	
+	strcpy(accNo, generateAccNo());
+    cout<<"\tThe Account number of card is: "<<accNo<<endl;
+	
     strcpy(pin,  generatePin());
-	cout<<"\tYour initial pin for card is: "<<pin<<endl;
+	cout<<"\tThe initial pin of card is: "<<pin<<endl;
 	strcpy(pin, hash.encryptPin(pin));
-		
+	
     if(isConnected() && to_continue()){
-			insert(card, fname, mname, sname, cpNo, sex, dob, addr, email, pin, balance);
+			insert(card, accNo, fname, mname, sname, cpNo, sex, dob, addr, email, pin, balance);
     }else{
          setMessage("\tProcess terminated..", 1);
     }
@@ -104,14 +109,5 @@ float planChooser(){
 	return initDeposit;
 }
 
-
-char * generatePin(){
-	char* pin = new char[6];
-    srand(time(NULL));
-    int value = rand() % 899999 + 100000;
-    itoa(value,pin, 10);
-    pin[6]='\0';
-    return pin;
-}
 
 

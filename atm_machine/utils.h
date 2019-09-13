@@ -1,6 +1,8 @@
-#ifndef UTILS_H
+#ifndef UTILS_HclTabCtrl
 #define UTILS_H
 
-int location(int cardNo);
+int location(char * cardNo);
+char * generateAccNo();
+char * generatePin();
 
 #endif // UTILS_H

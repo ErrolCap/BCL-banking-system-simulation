@@ -75,17 +75,18 @@ void deposit(){
 }
 
 void fund_transfer(){
+	Input inp;
     if(!isConnected()){
         setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
     
-    int accNo, loc;
+    char * accNo = new char[16], loc;
     float amount, amountTransfer;
 
     cout<<"\tYour balance is: "<<active.balance<<endl;
     cout<<"\tEnter the account number of the reciever: ";
-    cin>> accNo;
+    strcpy(accNo, inp.getText(15,16, "digit"));
     loc = location(accNo);
     if(loc != 0){
         cout<<"\tThe reciever name is "<<acc[loc].fname<<" "<<acc[loc].lname<<" "<<endl;

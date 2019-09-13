@@ -10,14 +10,14 @@
 #include "file_handling.h"
 
 using namespace std;
-void insert(char filePath, char *fname, char *mname, char *lname, char *cpNo, 
+void insert(char filePath, char *accNo, char *fname, char *mname, char *lname, char *cpNo, 
                     char *sex, char *dob, char *addr,  char *email,  char *pin, float balance){
-	//cout<<"\t"<<fname<<" "<<mname<<" "<<lname<<" "<<cpNo<<" "<<sex<<" "<<dob<<" "<<addr<<" "<<email<<" "<<pin<<" "<<balance<<endl;
+	cout<<"\t"<<accNo<<" "<<fname<<" "<<mname<<" "<<lname<<" "<<cpNo<<" "<<sex<<" "<<dob<<" "<<addr<<" "<<email<<" "<<pin<<" "<<balance<<endl;
     if(isFull()){
         setMessage("\tAccount is full", 1);
     }else{
         count++;
-        acc[count].accNo = (acc[count - 1].accNo + 1);
+		strcpy(acc[count].accNo, accNo);
         strcpy(acc[count].fname, fname);
         strcpy(acc[count].mname, mname);
         strcpy(acc[count].lname, lname);
@@ -28,14 +28,14 @@ void insert(char filePath, char *fname, char *mname, char *lname, char *cpNo,
         strcpy(acc[count].email, email);
         strcpy(acc[count].pin, pin);
         acc[count].balance = balance;
-        registerCARD(filePath,acc[count].accNo);
+        registerCARD(filePath, accNo);
         saveFile();
         setMessage("\tAccount successfully registered", 1);
         
     }
 }
 
-int update(int accNo, float amount){
+int update(char * accNo, float amount){
 	int loc = location(accNo);
 	if(loc != 0){
         acc[loc].balance = amount;

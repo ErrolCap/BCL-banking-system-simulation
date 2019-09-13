@@ -17,7 +17,7 @@ void saveFile(){
     int i;
     
     file.open(FILE_NAME, ios::out);
-
+	
     if(file.is_open()){
         file<<count<<endl;
         for(i = 1; i<= count; i++){
@@ -55,7 +55,7 @@ void retriveFile(){
     file.close();
 }
 
-int registerCARD(const char  drive, int accNo){
+int registerCARD(const char  drive, char * accNo){
 
     string path = ":\\";
     path.append(BANK_NAME);
@@ -72,8 +72,8 @@ int registerCARD(const char  drive, int accNo){
     return 0;
 }
 
-int loggedCard(const char drive){
-    int accNo;
+char * loggedCard(const char drive){
+    char * accNo = new char[16];
     string path = ":\\";
     path.append(BANK_NAME);
     path.insert(0, 1, drive);

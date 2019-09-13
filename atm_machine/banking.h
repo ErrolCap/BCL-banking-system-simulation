@@ -3,7 +3,7 @@
 #include <string>
 #include "config.h"
 typedef struct account {
-        int accNo;
+        char accNo[20];
         char fname[40];
         char mname[40];
         char lname[40];

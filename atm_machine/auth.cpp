@@ -15,7 +15,7 @@
 #include "Input.h"
 #include "main_menu.h"
 
-int loginAccount(int accNo, char * pin);
+int loginAccount(char * accNo, char * pin);
 void loginInput(const char card);
 using namespace std;
 
@@ -47,7 +47,7 @@ void loginInput(const char card){
 	Input inp;
     logo();
     char *pin;
-    int cardNo;
+    char * cardNo = new char[16];
     
     cardNo = loggedCard(card);
     cout<<"\t\t\t\t\t\tEnter your pin: ";
@@ -63,7 +63,7 @@ void loginInput(const char card){
     atm_menu();
 }
 
-int loginAccount(int accNo, char * pin){
+int loginAccount(char * accNo, char * pin){
         Bycrpyt hash;
         int loc = location(accNo);
         
@@ -77,7 +77,7 @@ int loginAccount(int accNo, char * pin){
             return 0;
         }
 
-        active.accNo = acc[loc].accNo;
+		strcpy(active.accNo, acc[loc].accNo);
         strcpy(active.fname, acc[loc].fname);
         strcpy(active.mname, acc[loc].mname);
         strcpy(active.lname, acc[loc].lname);

@@ -7,5 +7,6 @@
 #define BANK_NAME "LUGOD DEVS BANK"
 #define BANK_ACRO "LDB"
 #define BANK_LIMIT 500
+#define BANK_INIT "4269"
 
 #endif // CONFIG_H
