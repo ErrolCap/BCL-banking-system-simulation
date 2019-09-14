@@ -10,6 +10,7 @@ public:
 	char * getPassword(int min, int max);
 	char * getGender();
 	char * getDate();
+	float getFloat(int max);
 	char getChoice(char firstOpt, char lastOpt);
 	char * parseSpace(char * inp, bool mode);
 	int isLetter(char inp);
@@ -20,6 +21,9 @@ public:
 	int getterValidator(char inp, const char * type);
 	int isLetterUtils(char inp);
 	int isEmail(char inp);
+	int isFloat(char inp);
+	
+	char * moneyFormat(float amount);
 	
 };
 

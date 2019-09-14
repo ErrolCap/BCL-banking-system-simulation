@@ -1,8 +1,10 @@
 #ifndef FILE_HANDLING_H
 #define FILE_HANDLING_H
+#include <iostream>
+using namespace std;
 
 void saveFile();
 void retriveFile();
 int registerCARD(const char  drive, char * accNo);
-char * loggedCard(const char drive);
+string loggedCard(char drive);
 #endif // FILE_HANDLING_H

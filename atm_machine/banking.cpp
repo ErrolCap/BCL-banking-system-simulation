@@ -9,29 +9,32 @@
 #include "utils.h"
 #include "Bycrpyt.h"
 #include "Input.h"
+#include "atm_menu.h"
+
 using namespace std;
 void view_balance(){
+	Input inp;
 	 if(!isConnected()){
         setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
-    
+    atm_header("Check Balance");
 	cout<<"\tYour balance is: "<<active.balance<<endl;
 	setMessage("", 2);
 	
 }
 
 void widthdraw(){
-    
+    Input inp;
     if(!isConnected()){
         setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
-    
+    atm_header("Widthraw");
 	cout<<"\tYour balance is: "<<active.balance<<endl;
 	float amount;
 	cout<<"\tEnter your amount to widthraw"<<endl;
-    cin>>amount;
+    amount = inp.getFloat(10);
 	if(!insufiecient(amount)){
 		if(!bank_limit(amount)){
             active.balance -= amount;
@@ -51,15 +54,16 @@ void widthdraw(){
 }
 
 void deposit(){
+	 Input inp;
      if(!isConnected()){
         setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
-    
+    atm_header("Deposit");
     cout<<"\tYour balance is: "<<active.balance<<endl;
 	float amount;
-	cout<<"\tEnter your amount to deposit"<<endl;
-    cin>>amount;
+	cout<<"\tEnter your amount to deposit: ";
+    amount = inp.getFloat(10);
 
     if(!bank_limit(amount)){
         active.balance += amount;
@@ -80,7 +84,7 @@ void fund_transfer(){
         setMessage("\tCard is ejected, Please re insert your card", 3);
         return;
     }
-    
+    atm_header("Fund Transfer");
     char * accNo = new char[16], loc;
     float amount, amountTransfer;
 
@@ -91,7 +95,7 @@ void fund_transfer(){
     if(loc != 0){
         cout<<"\tThe reciever name is "<<acc[loc].fname<<" "<<acc[loc].lname<<" "<<endl;
         cout<<"\tEnter your amount to transfer: ";
-        cin>>amount;
+		amount = inp.getFloat(10);
 
         if(!insufiecient(amount)){
 
@@ -131,9 +135,7 @@ void changePin(){
 	Bycrpyt hash;
 	
 	char *old_pin, *pin, *re_pin;
-	cout<<"\tChange PIN"<<endl;
-	cout<<"\tAlways changes your pin every month to avoid hacking."<<endl;
-	cout<<"\t===================================================================="<<endl;
+	atm_header("Change PIN");
 	cout<<"\tEnter your old PIN: ";
 	old_pin = inp.getPassword(1, 6);
 	cout<<"\tEnter your new PIN: ";

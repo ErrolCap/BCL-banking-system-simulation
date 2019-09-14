@@ -72,8 +72,8 @@ int registerCARD(const char  drive, char * accNo){
     return 0;
 }
 
-char * loggedCard(const char drive){
-    char * accNo = new char[16];
+string loggedCard(char drive){
+    string accNo;
     string path = ":\\";
     path.append(BANK_NAME);
     path.insert(0, 1, drive);

@@ -19,7 +19,7 @@ int insufiecient(float amount){
 }
 
 int bank_limit(float amount){
-    return amount >= BANK_LIMIT ;
+    return amount <= BANK_LIMIT ;
 }
 
 

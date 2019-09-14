@@ -2,6 +2,10 @@
 #include <conio.h>
 #include <iostream>
 #include <string.h>
+#include <cstdlib>
+#include <iomanip>
+#include <locale>
+
 #define BACK_SPACE 8
 #define ENTER 13
 #define RIGHT_ARROW 26
@@ -15,7 +19,7 @@ Input::~Input()
 {
 }
 
-char * Input::getText(int min, int max,const char * type){
+char * Input::getText(int min, int max, const char * type){
 	int i = 0;
 	char * text = new char[max], temp;
 	while(temp != 13 && i != max){
@@ -40,6 +44,33 @@ char * Input::getText(int min, int max,const char * type){
 	text[i] = '\0';
 	cout<<endl;
 	return text;
+}
+
+float Input::getFloat(int max){
+	int i = 0;
+	char * val = new char[max], temp;
+	while(temp != 13 && i != max){
+		isEmptyFloat:
+		temp = getch();
+		if(temp != 8){
+			if(isFloat(temp)){
+				putch(temp);
+				val[i] = temp;
+				i++;
+			}
+		}else{
+			if(i != 0){
+				cout<<"\b \b";
+				i--;
+			}
+		}
+	}
+	if(i < 1){
+		goto isEmptyFloat;
+	}
+	val[i] = '\0';
+	cout<<endl;
+	return atof(val);
 }
 
 
@@ -132,6 +163,20 @@ char * Input::getGender(){
 	return seletected;
 }
 
+char * Input::moneyFormat(float amount){
+	char * format = new char[20];
+	stringstream ss;
+	ss.imbue(locale(""));
+	
+	if(amount < 0){
+	   ss << "-\u20B1" << fixed << -amount; 
+	} else {
+	   ss << "\u20B1" << fixed << amount; 
+	}
+	strcpy(format, ss.str().c_str());
+	return format;
+	
+}
 
 int Input::getterValidator(char inp,const char * type){
 	if(strcmpi("letter", type) == 0){
@@ -144,8 +189,9 @@ int Input::getterValidator(char inp,const char * type){
 		return isEmail(inp);
 	}else if(strcmpi("address", type) == 0){
 		return isAlphaNumericWSpace(inp);
+	}else if(strcmpi("float", type) == 0){
+		return isFloat(inp);
 	}
-
 	return -1;
 }
 
@@ -164,21 +210,17 @@ int Input::isNumber(char inp){
 	return 0;
 }
 
-
+int Input::isFloat(char inp){
+	return (isNumber(inp) || inp == 46) ? 1 : 0;
+}
 
 int Input::isAlphaNumerical(char inp){
-	if(isLetter(inp) || isNumber(inp)){
-		return 1;
-	}
-	return 0;
+	return (isLetter(inp) || isNumber(inp)) ? 1 : 0;
 }
 
 
 int Input::isLetterUtils(char inp){
-	if(inp == ENTER && inp == BACK_SPACE){
-		return 1;
-	}
-	return 0;
+	return (inp == ENTER && inp == BACK_SPACE) ? 1 : 0;
 }
 
 
@@ -197,19 +239,11 @@ char * Input::parseSpace(char * inp, bool mode){
 }
 
 int Input::isAlphaNumericWSpace(char inp){
-	if(isAlphaNumerical(inp) || (inp == 32 || inp == 44)) {
-		return 1;
-	}
-	
-	return 0;
+	return (isAlphaNumerical(inp) || (inp == 32 || inp == 44)) ? 1 : 0;
 }
 
 int Input::isEmail(char inp){
-	if(isAlphaNumerical(inp) || (inp == 64 || inp == 95 || inp == 46)){
-		return 1;
-	}
-	
-	return 0;
+	return (isAlphaNumerical(inp) || (inp == 64 || inp == 95 || inp == 46)) ? 1 : 0;
 }
 
 int Input::NavigateOnLetter(char inp){
