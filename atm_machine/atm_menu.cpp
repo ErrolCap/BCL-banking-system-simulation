@@ -42,7 +42,7 @@ void atm_menu(){
     break;
     
 	case '5':
-		changePin();
+		setting_menu();
 	break;
     default:
         main_menu();
@@ -54,11 +54,10 @@ void setting_menu(){
 	Input inp;
     char ch;
 	atm_header("Setting");
-	cout<<"\t[1] View Information"<<endl;
-	cout<<"\t[2] Change pin"<<endl;
-	cout<<"\t[3] Back"<<endl;
+	cout<<"\t[1] Change pin"<<endl;
+	cout<<"\t[2] Back"<<endl<<endl;
 	cout<<"\tChoice: ";
-    ch = inp.getChoice('1', '3');
+    ch = inp.getChoice('1', '2');
     system("cls");
 
     switch (ch)
@@ -66,10 +65,6 @@ void setting_menu(){
     case '1':   
         changePin(); 
 	break;
-	
-    case '2':
-        changePin(); 
-    break;
 	
     default:
         atm_menu();

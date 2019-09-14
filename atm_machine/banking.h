@@ -3,17 +3,17 @@
 #include <string>
 #include "config.h"
 typedef struct account {
-        char accNo[20];
-        char fname[40];
-        char mname[40];
-        char lname[40];
-        char cpNo[20];
-        char sex[10];
-        char dob[20];
-        char addr[40];
-        char email[40];
-        char pin[5];
-        float balance;
+	char accNo[20];
+	char fname[40];
+	char mname[40];
+	char lname[40];
+	char cpNo[20];
+	char sex[10];
+	char dob[20];
+	char addr[40];
+	char email[40];
+	char pin[5];
+	float balance;
 }ACCOUNT ;
 
 extern int count;

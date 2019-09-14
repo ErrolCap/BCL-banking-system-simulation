@@ -68,15 +68,13 @@ void loginInput(char card){
 }
 
 int loginAccount(char accNo[20], char pin[6]){
-        Bycrpyt hash;
         int loc = location(accNo);
         
         if(loc == 0){
             return 0;
         }
+		
 		getch();
-		
-		
         if(strcmp(decryptPin(acc[loc].pin), pin) != 0){
             return 0;
         }
@@ -102,6 +100,17 @@ char * decryptPin(char pin[6]){
     int i;
     for(i = 0; i <= 5 ; i++){
         pins[i] -= ROUNDS;
+    }
+	pins[6]= '\0';
+    return pins; 
+}
+
+char * encryptPin(char pin[6]){
+	char * pins;
+	strcpy(pins, pin);
+    int i;
+    for(i = 0; i <= 5 ; i++){
+        pins[i] += ROUNDS;
     }
 	pins[6]= '\0';
     return pins; 

@@ -13,11 +13,10 @@ using namespace std;
 int location(char * cardNo){
     int i;
     for(i = 1; i <= count; i++){
-        if(strcmpi(acc[i].accNo, cardNo)== 0){
+        if(strcmp(acc[i].accNo, cardNo) == 0){
         	return i;
 		}
     }
-
     return 0;
 
 }

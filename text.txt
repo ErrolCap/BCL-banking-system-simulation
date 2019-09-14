@@ -1,0 +1,11 @@
+string accNo;
+string fname;
+string mname;
+string lname;
+string cpNo;
+string sex;
+string dob;
+string addr;
+string email;
+string pin;
+float balance;

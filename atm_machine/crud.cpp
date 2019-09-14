@@ -7,7 +7,9 @@
 #include "validation.h"
 #include "config.h"
 #include "utils.h"
+#include "Bycrpyt.h"
 #include "file_handling.h"
+#include "auth.h"
 
 using namespace std;
 void insert(char filePath, char *accNo, char *fname, char *mname, char *lname, char *cpNo, 
@@ -33,6 +35,7 @@ void insert(char filePath, char *accNo, char *fname, char *mname, char *lname, c
         setMessage("\tAccount successfully registered", 1);
         
     }
+	return;
 }
 
 int update(char * accNo, float amount){
@@ -49,10 +52,11 @@ int update(char * accNo, float amount){
 
 
 int updatePin(char * pin){
+	Bycrpyt hash;
 	int loc = location(active.accNo);
 	
 	if(loc != 0){
-		strcpy(acc[loc].pin, pin);
+		strcpy(acc[loc].pin, encryptPin(pin));
 		saveFile();
 		return 1;
 	}

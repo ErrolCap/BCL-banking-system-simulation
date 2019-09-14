@@ -22,10 +22,11 @@ char * Bycrpyt::encryptPin(char * pin){
 }
 
 char * Bycrpyt::decryptPin(char * pin){
+	
     int i;
     for(i = 0; i <= 5 ; i++){
         pin[i] -= ROUNDS;
     }
+	pin[6]='\0';
     return pin; 
 }
-
