@@ -17,7 +17,7 @@
 #include "Input.h"
 #include "main_menu.h"
 
-int loginAccount(char accNo[20], char pin[6]);
+int loginAccount(char accNo[], char pin[]);
 void loginInput(char card);
 char * decryptPin(char pin[6]);
 using namespace std;
@@ -67,17 +67,19 @@ void loginInput(char card){
 	verifyCardLogged();
 }
 
-int loginAccount(char accNo[20], char pin[6]){
+int loginAccount(char accNo[], char pin[]){
         int loc = location(accNo);
-        
+        Bycrpyt hash;
         if(loc == 0){
             return 0;
         }
-		
-		getch();
-        if(strcmp(decryptPin(acc[loc].pin), pin) != 0){
+		char dec_pin[7],orig_pin[7];
+		strcpy(orig_pin, acc[loc].pin);
+		strcpy(dec_pin,hash.decryptPin(orig_pin));
+        if(strcmp(dec_pin, pin) != 0){
             return 0;
         }
+		
 		strcpy(active.accNo, acc[loc].accNo);
         strcpy(active.fname, acc[loc].fname);
         strcpy(active.mname, acc[loc].mname);
@@ -92,26 +94,4 @@ int loginAccount(char accNo[20], char pin[6]){
 		
         return 1;
         
-}
-
-char * decryptPin(char pin[6]){
-	char * pins;
-	strcpy(pins, pin);
-    int i;
-    for(i = 0; i <= 5 ; i++){
-        pins[i] -= ROUNDS;
-    }
-	pins[6]= '\0';
-    return pins; 
-}
-
-char * encryptPin(char pin[6]){
-	char * pins;
-	strcpy(pins, pin);
-    int i;
-    for(i = 0; i <= 5 ; i++){
-        pins[i] += ROUNDS;
-    }
-	pins[6]= '\0';
-    return pins; 
 }

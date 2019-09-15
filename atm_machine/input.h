@@ -6,7 +6,7 @@ class Input
 public:
 	Input();
 	~Input();
-	char * getText(int min, int max, const char * type);
+	char * getText(int min, int max, char type[]);
 	char * getPassword(int min, int max);
 	char * getGender();
 	char * getDate();

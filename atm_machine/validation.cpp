@@ -45,5 +45,5 @@ int to_continue(){
 		to_continue();
 		break;
 	}
-	
+	return -1;
 }

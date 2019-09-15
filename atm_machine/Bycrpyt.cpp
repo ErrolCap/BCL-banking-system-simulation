@@ -13,7 +13,7 @@ Bycrpyt::~Bycrpyt()
 }
 
 
-char * Bycrpyt::encryptPin(char * pin){
+char * Bycrpyt::encryptPin(char pin[]){
     int i;
     for(i = 0; i <= 5 ; i++){
         pin[i] += ROUNDS;
@@ -21,7 +21,7 @@ char * Bycrpyt::encryptPin(char * pin){
     return pin; 
 }
 
-char * Bycrpyt::decryptPin(char * pin){
+char * Bycrpyt::decryptPin(char pin[]){
 	
     int i;
     for(i = 0; i <= 5 ; i++){

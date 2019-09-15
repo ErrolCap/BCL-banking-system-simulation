@@ -115,6 +115,7 @@
         <File Name="validation.cpp"/>
       </VirtualDirectory>
       <VirtualDirectory Name="bycrypt">
+        <File Name="Bycrpyt.h"/>
         <File Name="Bycrpyt.cpp"/>
       </VirtualDirectory>
       <VirtualDirectory Name="config">
@@ -125,6 +126,7 @@
         <File Name="utils.cpp"/>
       </VirtualDirectory>
       <VirtualDirectory Name="banking">
+        <File Name="crud.h"/>
         <File Name="banking.h"/>
         <File Name="crud.cpp"/>
         <File Name="banking.cpp"/>
@@ -157,7 +159,6 @@
       <File Name="error.h"/>
       <File Name="CARD.h"/>
       <File Name="main_menu.h"/>
-      <File Name="crud.h"/>
       <File Name="register_bank.h"/>
       <File Name="admin.h"/>
       <File Name="admin_menu.h"/>
@@ -165,7 +166,6 @@
       <File Name="file_handling.h"/>
       <File Name="validation.h"/>
       <File Name="alert.h"/>
-      <File Name="Bycrpyt.h"/>
       <File Name="config.h"/>
       <File Name="auth.h"/>
     </VirtualDirectory>

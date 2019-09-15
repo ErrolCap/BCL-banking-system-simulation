@@ -19,9 +19,9 @@ Input::~Input()
 {
 }
 
-char * Input::getText(int min, int max, const char * type){
+char * Input::getText(int min, int max, char type[]){
 	int i = 0;
-	char* text = new char[max], temp;
+	char * text = new char[max], temp;
 	while(temp != 13 && i != max){
 		isEmptyLBL:
 		temp = getch();

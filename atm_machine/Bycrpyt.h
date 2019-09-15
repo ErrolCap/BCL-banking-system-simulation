@@ -6,8 +6,8 @@ class Bycrpyt
 public:
     Bycrpyt();
     ~Bycrpyt();
-    char * encryptPin(char * pin);
-    char * decryptPin(char * pin);
+    char * encryptPin(char pin[]);
+    char * decryptPin(char pin[]);
 };
 
 #endif // BYCRPYT_H

@@ -51,12 +51,15 @@ int update(char * accNo, float amount){
 }
 
 
-int updatePin(char * pin){
+int updatePin(char pin[]){
 	Bycrpyt hash;
 	int loc = location(active.accNo);
 	
+	cout<<pin<<endl;
+	getch();
+	
 	if(loc != 0){
-		strcpy(acc[loc].pin, encryptPin(pin));
+		strcpy(acc[loc].pin, pin);
 		saveFile();
 		return 1;
 	}
