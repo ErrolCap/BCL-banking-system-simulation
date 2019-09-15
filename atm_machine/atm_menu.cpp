@@ -1,6 +1,7 @@
 #include "atm_menu.h"
 #include "banking.h"
 #include "Input.h"
+#include "card_validation.h"
 #include <iostream>
 #include <string.h>
 #include "main_menu.h"
@@ -18,7 +19,7 @@ void atm_menu(){
     cout<<"\t[3] Withdraw"<<endl;
     cout<<"\t[4] Fund Transfer"<<endl;
 	cout<<"\t[5] Setting"<<endl;
-    cout<<"\t[6] Logout"<<endl<<endl;
+    cout<<"\t[6] End Transaction"<<endl<<endl;
 	cout<<"\tChoice: ";
     ch = inp.getChoice('1', '6');
     system("cls");
@@ -45,7 +46,7 @@ void atm_menu(){
 		setting_menu();
 	break;
     default:
-        main_menu();
+        isRemoved(" ");
         break;
     }
 }
@@ -78,7 +79,7 @@ void atm_header(const char * msg){
 	time(&tt);
 	ti = localtime(&tt); 
 	system("cls");
-	cout<<"\t"<<BANK_NAME<<endl;
+	cout<<"\n\t"<<BANK_NAME<<endl;
 	cout<<"\tHello! "<<(strcmpi(active.sex, "MALE") ? "Mr." : "Mam. ")<<active.fname<<" "<<active.lname<<"\t\t\t\tCurrent time is "<<asctime(ti);
 	box();
 	cout<<"\t"<<msg<<endl;

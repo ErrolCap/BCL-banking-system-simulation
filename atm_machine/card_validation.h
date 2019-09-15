@@ -3,5 +3,6 @@
 
 int isRegistered(const char  drive);
 int isConnected();
+void isRemoved(char msg[]);
 
 #endif // CARD_VALIDATION_H

@@ -1,6 +1,8 @@
 #include "card_validation.h"
 #include "CARD.h"
 #include "config.h"
+#include "auth.h"
+#include "logo.h"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -17,6 +19,22 @@ int isConnected(){
             
             return 0;
         }
+}
+
+void isRemoved(char msg[]){
+	while(1){
+		char card = getRemovableDisk();
+		
+		if(card == '0'){
+			verifyCardLogged();
+		}else{
+			system("cls");
+			logo();
+			cout<<endl<<"\t\t"<<msg<<endl;
+			cout<<"\t\t\tPlease safely removed your card"<<endl;
+			cout<<"\t\t\tThanks for trusting "<<BANK_NAME<<" have a wonderful day!"<<endl;
+		}
+	}
 }
 
 

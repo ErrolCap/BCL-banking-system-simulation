@@ -20,7 +20,11 @@
 int loginAccount(char accNo[], char pin[]);
 void loginInput(char card);
 char * decryptPin(char pin[6]);
+void checkAttemp();
 using namespace std;
+
+
+int attemp = 0;
 
 void verifyCardLogged(){
     
@@ -30,13 +34,15 @@ void verifyCardLogged(){
         
         if(card != '0'){
             if(isRegistered(card) == 1){
-                    loginInput(card);
+				loginInput(card);
             }else{
-                setMessage("\tThe card has not yet registered", -1);
+				logo();
+				cout<<card<<endl<<endl;
+                setMessage("\t\t\tThe card has not yet registered", -1);
                 main_menu();
             }
         }else{
-             noCardDetected();
+			noCardDetected();
         }
     }
   
@@ -48,6 +54,8 @@ void verifyCardLogged(){
 void loginInput(char card){
     Bycrpyt hash;
 	Input inp;
+	
+	system("cls");
     logo();
 		
 	char pin[10];
@@ -60,11 +68,42 @@ void loginInput(char card){
     if(loginAccount(cardNo, pin) != 0){
 		system("cls");
 		atm_menu();
+		return;
     }
 	
+	checkAttemp();
 	cout<<"\t\t\t\t\t\tLogin failed, Please try again..."<<endl;
 	getch();
 	verifyCardLogged();
+}
+
+void checkAttemp(){
+	attemp++;
+	int second = 0;
+	if(attemp >= 3 && attemp < 5){
+		second = 30;
+	}else if(attemp >= 5 && attemp < 6){
+		second = 60;
+	}else if(attemp>= 6){
+		system("cls");
+		logo();
+		cout<<"\t\t\tThats to much the system attemp force to shutdown"<<endl;
+		exit(0);
+	}
+	else{
+		return;
+	}
+	int i = 0;
+	
+	for(i = second; i>= 1; i--){
+		system("cls");
+		logo();
+		cout<<"\t\t\tYou entered wrong PIN for "<<attemp<<" attemps, Please try again in "<<i<<" seconds"<<endl;
+		Sleep(1000);
+	}
+	verifyCardLogged();
+	return;
+	
 }
 
 int loginAccount(char accNo[], char pin[]){

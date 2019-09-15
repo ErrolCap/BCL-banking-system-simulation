@@ -99,6 +99,7 @@
         <File Name="Input.h"/>
       </VirtualDirectory>
       <VirtualDirectory Name="drive_interact">
+        <File Name="card_validation.h"/>
         <File Name="card_validation.cpp"/>
         <File Name="CARD.cpp"/>
       </VirtualDirectory>
@@ -119,6 +120,7 @@
         <File Name="Bycrpyt.cpp"/>
       </VirtualDirectory>
       <VirtualDirectory Name="config">
+        <File Name="config.h"/>
         <File Name="config.cpp"/>
       </VirtualDirectory>
       <VirtualDirectory Name="utils">
@@ -133,6 +135,8 @@
       </VirtualDirectory>
       <VirtualDirectory Name="views">
         <VirtualDirectory Name="components">
+          <File Name="receipt.cpp"/>
+          <File Name="receipt.h"/>
           <VirtualDirectory Name="gotoxy">
             <File Name="gotoxy.cpp"/>
           </VirtualDirectory>
@@ -155,7 +159,6 @@
     <VirtualDirectory Name="header">
       <File Name="gotoxy.h"/>
       <File Name="logo.h"/>
-      <File Name="card_validation.h"/>
       <File Name="error.h"/>
       <File Name="CARD.h"/>
       <File Name="main_menu.h"/>
@@ -166,7 +169,6 @@
       <File Name="file_handling.h"/>
       <File Name="validation.h"/>
       <File Name="alert.h"/>
-      <File Name="config.h"/>
       <File Name="auth.h"/>
     </VirtualDirectory>
     <File Name="main.cpp"/>

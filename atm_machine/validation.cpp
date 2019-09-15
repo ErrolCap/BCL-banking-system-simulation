@@ -15,11 +15,11 @@ int isEmpty(){ return count == 0; }
 int isFull(){ return count >= MAX; }
 
 int insufiecient(float amount){
-	return amount > active.balance;
+	return amount > (active.balance - BANK_LIMIT);
 }
 
 int bank_limit(float amount){
-    return amount <= BANK_LIMIT ;
+    return amount < BANK_LIMIT ;
 }
 
 

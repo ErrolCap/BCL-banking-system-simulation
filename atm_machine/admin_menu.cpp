@@ -10,17 +10,19 @@
 #include "alert.h"
 #include "logo.h"
 #include "gotoxy.h"
+#include "Input.h"
 using namespace std;
 void admin_menu(){
     char ch;
+	Input inp;
     system("cls");
     logo();
-    cout<<"\t\t[1] Register Account"<<endl;
-	cout<<"\t\t[2] Display"<<endl;
-	cout<<"\t\t[3] Menu"<<endl;
-	cout<<"\t\t=============================="<<endl;
-	cout<<"\t\tType your choice: ";
-	cin>>ch;
+    cout<<"\t\t\t[1] Register Account"<<endl;
+	cout<<"\t\t\t[2] Display"<<endl;
+	cout<<"\t\t\t[3] Menu"<<endl;
+	cout<<"\t\t\t=============================="<<endl;
+	cout<<"\t\t\tType your choice: ";
+	ch = inp.getChoice('1', '3');
 	system("cls");
     switch (ch)
     {

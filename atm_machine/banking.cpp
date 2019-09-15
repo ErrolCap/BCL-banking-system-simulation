@@ -12,6 +12,7 @@
 #include "Bycrpyt.h"
 #include "Input.h"
 #include "atm_menu.h"
+#include "receipt.h"
 
 void view_balance();
 void widthdraw();
@@ -49,7 +50,8 @@ void widthdraw(){
             active.balance -= amount;
 			
 				if(update(active.accNo, active.balance)){
-					setMessage("\tAmount widthdrawed \nPlease remove your card",2);
+					receipt(2, amount, " ");
+					isRemoved("\tAmount widthdrawed to your account");
 				}else{
 					setMessage("\tBank is offline...", 2);
 				}
@@ -84,12 +86,13 @@ void deposit(){
 			active.balance += amount;
 
 			if(update(active.accNo, active.balance)){
-				setMessage("\tAmount deposit \nPlease remove your card", 2);
+				receipt(1, amount, " ");
+				isRemoved("\tAmount deposit to your account");
 			}else{
 				setMessage("\tBank is offline...", 2);
 			}
 		}else{
-			setMessage("\tThe limit to widthdraw is 500", 2);
+			setMessage("\tThe limit to deposit is 500", 2);
 		}
 	}else{
 		setMessage("\tProcess Terminated...", 2);
@@ -102,14 +105,15 @@ void fund_transfer(){
         return;
     }
     atm_header("Fund Transfer");
-	char * acc = new char[16];
+
+	char accNo[16];
     cout<<"\tYour balance is: "<<active.balance<<endl;
     cout<<"\tEnter the account number of the reciever: ";
 	
-	strcpy(acc, inp.getText(16,16, "digit"));
-	cout<<acc;
-	if(strcmp(acc, active.accNo) != 0){
-		tranferNext(acc);
+//	strcpy(acc, inp.getText(16,16, "digit"));
+	cin>>accNo;
+	if(strcmp(accNo, active.accNo) != 0){
+		tranferNext(accNo);
 	}else{
 		setMessage("\tInvalid Account Number...", 2);
 	}
@@ -134,7 +138,8 @@ void tranferNext(char accNo[]){
 						amountTransfer = (acc[loc].balance + amount);
 						
 						if(update(acc[loc].accNo, amountTransfer)){
-							setMessage("\tThe fund is transfered succesffuly", 2);
+							receipt(3, amount, accNo);
+							isRemoved("\tMoney transfered successfully");
 						} else{
 							 setMessage("\tBank is offline...", 2);
 						}
@@ -191,7 +196,7 @@ void changePin(){
 		}
 		
 		if(updatePin(hash.encryptPin(pin))){
-			setMessage("\tYour pin is successfully change", 2);
+			isRemoved("\tYour pin is successfully change");
 			return;
 		}
 		
